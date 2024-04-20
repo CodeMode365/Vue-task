@@ -1,6 +1,9 @@
 <template>
   <section class="text-gray-600 body-font w-full">
     <div class="my-2 w-full flex justify-end mx-2">
+      <div>
+        <CategoryFilter></CategoryFilter>
+      </div>
       <div class="w-80 px-8 mb-4">
         <label
           for="default-search"
@@ -47,7 +50,7 @@
     <div class="container px-5 mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-[60vh]">
         <h2 v-if="filteredData <= 0">No product found!</h2>
-        <h2 v-if="!data">Loading...</h2>
+        <h2 v-if="isLoading">Loading...</h2>
         <ProductCard
           v-else
           v-for="(product, index) in filteredData"
@@ -73,22 +76,28 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ProductCard from './ProductCard.vue'
 import PageComponent from './PageComponent.vue'
+import CategoryFilter from './CategoryFilter.vue'
 import { fetchProducts, searchProduct } from '@/hooks/product'
 import { onMounted, watch, ref, computed } from 'vue'
+import { useApiStore } from '@/stores/product'
+import { storeToRefs } from 'pinia'
+
 const data = ref(null)
 const filteredData = ref(null)
 const searchText = ref('')
 let currentPage = ref(1)
+const store = useApiStore()
+const { products, isLoading } = storeToRefs(store)
 
 const onSearch = async () => {
-  filteredData.value = await searchProduct(data.value, searchText.value)
+  filteredData.value = await searchProduct(products.value, searchText.value)
 }
 
 onMounted(async () => {
-  data.value = await fetchProducts()
+  store.fetchProducts()
   paginateData()
 })
 
@@ -97,15 +106,13 @@ watch(currentPage, () => {
 })
 
 const paginateData = () => {
-  console.log(data.value.length, currentPage.value)
   const startIndex = (currentPage.value - 1) * 8
-  const newData = [...data.value].slice(startIndex, startIndex + 8)
-  console.log(data)
+  const newData = products.value.slice(startIndex, startIndex + 8)
   filteredData.value = newData
 }
 
 const totalPages = computed(() => {
-  return Math.ceil(data.value.length / 8)
+  return Math.ceil(products.value.length / 8)
 })
 const changePage = (page) => {
   currentPage.value = page
