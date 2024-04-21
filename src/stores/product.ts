@@ -16,6 +16,7 @@ export const useApiStore = defineStore('apiStore', {
     ] as iProduct[],
     cart: [] as Partial<iProduct>[],
     currentCategory: '' as iCategories,
+    sorting: '',
     isLoading: false,
     isError: false
   }),
@@ -43,6 +44,9 @@ export const useApiStore = defineStore('apiStore', {
     },
     deleteFromCart(product: Partial<iProduct>) {
       this.cart = this.cart.filter(({ id }) => id === product.id)
+    },
+    updateSorting(sortvalue: string) {
+      this.sorting = sortvalue
     }
   }
 })
