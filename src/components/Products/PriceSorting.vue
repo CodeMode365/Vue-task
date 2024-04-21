@@ -3,8 +3,12 @@ import { ref } from 'vue'
 import { useApiStore } from '@/stores/product'
 import { storeToRefs } from 'pinia'
 
+const { showFilter } = defineProps({
+  showFilter: Boolean
+})
+
 const filterOptions = ['Price Asc', 'Price Desc']
-const showFilter = ref(false)
+// const showFilter = ref(false)
 
 const store = useApiStore()
 const { sorting, updateSorting } = storeToRefs(store)
