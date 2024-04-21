@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import ProductsView from '@/views/ProductsView.vue'
 import ProductDetailView from '@/views/ProductDetailView.vue'
+import CartView from '@/views/CartView.vue'
 import NotFound from '@/views/NotFoundView.vue'
 
 const router = createRouter({
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/products/:id',
       name: 'product-detail',
       component: ProductDetailView
+    },
+    {
+      path: '/cart',
+      name: 'cart-items',
+      component: CartView
     },
     {
       path: '/:catchAll(.*)',
