@@ -40,6 +40,7 @@
 
         <div class="flex justify-center" v-if="data">
           <button
+            @click="addProductIntoCart(data)"
             class="inline-flex text-white bg-secondary border-0 py-2 px-6 focus:outline-none rounded text-lg"
           >
             Add to Cart
@@ -60,10 +61,20 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { fetchProductDetail } from '@/hooks/product'
 import RatingComponent from '@/components/Products/RatingComponent.vue'
+import { useApiStore } from '@/stores/product'
+import { storeToRefs } from 'pinia'
+import { useToast } from 'vue-toastification'
 
 const data = ref(null)
 const productId = ref('')
 const route = useRoute()
+
+const store = useApiStore()
+const { addToCart } = storeToRefs(store)
+
+const addProductIntoCart = (product) => {
+  store.addToCart(product)
+}
 
 onMounted(async () => {
   if (route.params && route.params.id) {

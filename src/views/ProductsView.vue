@@ -1,5 +1,4 @@
 <script setup>
-import FilterBar from '@/components/Products/FilterBar.vue'
 import ProductListing from '@/components/Products/ProductListing.vue'
 </script>
 
