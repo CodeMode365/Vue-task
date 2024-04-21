@@ -1,40 +1,71 @@
-# vue-task
+# Vue Task
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a Vue application implementing a product search with autocomplete functionality. Users can type in the search input field, and autocomplete suggestions based on matching product names from the API response will be displayed. Users can select a suggestion or continue typing their search query.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Search input field with autocomplete functionality.
+- Autocomplete suggestions based on matching product names from the API response.
+- Users can select a suggestion or continue typing their search query.
+- Responsive design.
 
-## Type Support for `.vue` Imports in TS
+## Technologies Used
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Vue.js
+- Vue Router
+- Axios for API requests
+- Pinia for state management
+- Vue Toastification for notifications
+- Tailwind CSS for styling
 
-## Customize configuration
+## API Endpoint
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+The application fetches product data from the following API endpoint:
 
-## Project Setup
+https://fakestoreapi.com/products
 
-```sh
-npm install
+## Getting Started
+### Prerequisites
+
+    Node.js and npm (or yarn) installed on your local machine.
+
+### Installation
+
+1. Clone the repository:
+
+```
+git clone https://github.com/yourusername/vue-task.git
 ```
 
-### Compile and Hot-Reload for Development
+2. Navigate into the project directory:
 
-```sh
-npm run dev
+``` 
+cd vue-task
+```
+3. Install dependencies:
+```
+    npm install
 ```
 
-### Type-Check, Compile and Minify for Production
+### Usage
 
-```sh
+Start the development server:
+
+```
+    npm run dev
+```
+Open your browser and navigate to http://localhost:3000.
+
+## Building for Production
+
+To build the application for production, run:
+```
 npm run build
 ```
+The production-ready files will be available in the dist directory.
+Contributing
 
-### Lint with [ESLint](https://eslint.org/)
+Please follow the code of conduct and contribution guidelines when contributing to this project.
+License
 
-```sh
-npm run lint
-```
-# Vue-task
+If you have any questions or need further assistance, please don't hesitate to ask!
