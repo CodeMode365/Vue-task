@@ -3,8 +3,10 @@ import axios from 'axios'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { iProduct } from '@/types/product'
+import { useToast } from 'vue-toastification'
 
 export type iCategories = 'electronics' | 'jewelery' | "men's clothing" | "women's clothing" | ''
+const toast = useToast()
 
 export const useApiStore = defineStore('apiStore', {
   state: () => ({
@@ -20,7 +22,14 @@ export const useApiStore = defineStore('apiStore', {
     isLoading: false,
     isError: false
   }),
-
+  getters: {
+    totalCartItems(): number {
+      return this.cart.reduce((total, item) => total + item.quantity, 0)
+    },
+    totalCartPrice(): number {
+      return this.cart.reduce((total, item) => total + item.price * item.quantity, 0)
+    }
+  },
   actions: {
     async fetchProducts() {
       this.isLoading = true
@@ -52,7 +61,7 @@ export const useApiStore = defineStore('apiStore', {
       } else {
         this.cart.push({ ...product, quantity: 1 })
       }
-      console.log(this.cart)
+      toast.success('Added to cart!')
     },
 
     removeFromCart(productId: number) {
