@@ -10,7 +10,9 @@ const categories: (iCategories | 'All')[] = [
   "women's clothing",
   'All'
 ]
-const showFilter = ref(false)
+const { showCategories } = defineProps({
+  showCategories: Boolean
+})
 
 const store = useApiStore()
 const { currentCategory } = storeToRefs(store)
@@ -19,7 +21,7 @@ const { currentCategory } = storeToRefs(store)
 <template>
   <div class="relative">
     <button
-      @click="() => (showFilter = !showFilter)"
+      @click="() => (showCategories = !showCategories)"
       id="dropdownDefaultButton"
       data-dropdown-toggle="dropdown"
       class="text-white bg-secondary font-medium text-sm text-center items-center px-4 py-2 rounded-md min-w-40 flex justify-between"
@@ -48,7 +50,7 @@ const { currentCategory } = storeToRefs(store)
       id="dropdown"
       :class="[
         'absolute mt-1 z-20 bg-gray-50 divide-y divide-gray-100 rounded-md shadow w-44',
-        showFilter ? '' : 'hidden'
+        showCategories ? '' : 'hidden'
       ]"
     >
       <ul class="py-2 text-sm" aria-labelledby="dropdownDefaultButton">
