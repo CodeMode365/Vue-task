@@ -26,7 +26,12 @@ const { title, id, price, image, quantity } = defineProps({
         <div class="flex items-center border-gray-100">
           <span
             class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-sky-600 hover:text-sky-50"
-            @click="() => store.updateCartItemQuantity(id, quantity - 1)"
+            @click="
+              () =>
+                quantity - 1 >= 1
+                  ? store.updateCartItemQuantity(id, quantity - 1)
+                  : store.removeFromCart(id)
+            "
           >
             -
           </span>
