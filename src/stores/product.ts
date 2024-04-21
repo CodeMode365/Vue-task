@@ -14,7 +14,7 @@ export const useApiStore = defineStore('apiStore', {
       { id: 3, title: 'Product mno fda hjdfa', price: 344, rating: { rate: 3, count: 23 } },
       { id: 4, title: 'Product defz', price: 344, rating: { rate: 3, count: 23 } }
     ] as iProduct[],
-    cart: [] as Partial<iProduct>[],
+    cart: [] as any[],
     currentCategory: '' as iCategories,
     sorting: '',
     isLoading: false,
@@ -39,14 +39,35 @@ export const useApiStore = defineStore('apiStore', {
       this.currentCategory = category
       this.fetchProducts()
     },
-    addToCart(product: Partial<iProduct>) {
-      this.cart.push(product)
-    },
     deleteFromCart(product: Partial<iProduct>) {
       this.cart = this.cart.filter(({ id }) => id === product.id)
     },
     updateSorting(sortvalue: string) {
       this.sorting = sortvalue
+    },
+    addToCart(product: iProduct) {
+      const existingItemIndex = this.cart.findIndex((item) => item.id === product.id)
+      if (existingItemIndex !== -1) {
+        this.cart[existingItemIndex].quantity++
+      } else {
+        this.cart.push({ ...product, quantity: 1 })
+      }
+      console.log(this.cart)
+    },
+
+    removeFromCart(productId: number) {
+      this.cart = this.cart.filter((item) => item.id !== productId)
+    },
+
+    updateCartItemQuantity(productId: number, quantity: number) {
+      const item = this.cart.find((item) => item.id === productId)
+      if (item) {
+        item.quantity = quantity
+      }
+    },
+
+    clearCart() {
+      this.cart = []
     }
   }
 })
