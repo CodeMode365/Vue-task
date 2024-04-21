@@ -31,6 +31,7 @@ const { title, id, price, image, quantity } = defineProps({
             -
           </span>
           <input
+            disabled
             class="h-8 w-8 border bg-white text-center text-xs outline-none"
             type="number"
             :value="quantity"
@@ -62,3 +63,22 @@ const { title, id, price, image, quantity } = defineProps({
     </div>
   </div>
 </template>
+
+<style>
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
