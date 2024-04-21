@@ -8,10 +8,16 @@ export type iCategories = 'electronics' | 'jewelery' | "men's clothing" | "women
 
 export const useApiStore = defineStore('apiStore', {
   state: () => ({
-    products: [] as iProduct[],
+    products: [
+      { id: 1, title: 'Product xyz', price: 344, rating: { rate: 3, count: 23 } },
+      { id: 2, title: 'Product abcgohh', price: 344, rating: { rate: 3, count: 23 } },
+      { id: 3, title: 'Product mno fda hjdfa', price: 344, rating: { rate: 3, count: 23 } },
+      { id: 4, title: 'Product defz', price: 344, rating: { rate: 3, count: 23 } }
+    ] as iProduct[],
     cart: [] as Partial<iProduct>[],
     currentCategory: '' as iCategories,
-    isLoading: false
+    isLoading: false,
+    isError: false
   }),
 
   actions: {
@@ -22,6 +28,7 @@ export const useApiStore = defineStore('apiStore', {
         const { data } = await axios.get(`https://fakestoreapi.com/products/${categoryUrl}`)
         this.products = data as iProduct[]
       } catch (error) {
+        this.isError = true
         throw new Error('Failed to fetch data!')
       } finally {
         this.isLoading = false
