@@ -4,7 +4,11 @@
   >
     <div class="group-hover:block z-10 transition hidden absolute right-5" title="Add to cart">
       <button
-        @click="addProductIntoCart({ id: props.id, title: props.title, price: props.price })"
+        @click="
+          addProductIntoCart({
+            ...props
+          })
+        "
         class="bg-white/80 h-8 w-8 border border-primary rounded-full flex items-center justify-center"
       >
         <i class="fa-solid fa-cart-plus text-primary"></i>
