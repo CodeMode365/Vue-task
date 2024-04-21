@@ -26,11 +26,17 @@ const { title, id, price, image, quantity } = defineProps({
         <div class="flex items-center border-gray-100">
           <span
             class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-sky-600 hover:text-sky-50"
-            @click="() => store.updateCartItemQuantity(id, quantity - 1)"
+            @click="
+              () =>
+                quantity - 1 >= 1
+                  ? store.updateCartItemQuantity(id, quantity - 1)
+                  : store.removeFromCart(id)
+            "
           >
             -
           </span>
           <input
+            disabled
             class="h-8 w-8 border bg-white text-center text-xs outline-none"
             type="number"
             :value="quantity"
@@ -62,3 +68,22 @@ const { title, id, price, image, quantity } = defineProps({
     </div>
   </div>
 </template>
+
+<style>
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>

@@ -66,6 +66,7 @@ export const useApiStore = defineStore('apiStore', {
 
     removeFromCart(productId: number) {
       this.cart = this.cart.filter((item) => item.id !== productId)
+      toast.error('Product deleted from cart!')
     },
 
     updateCartItemQuantity(productId: number, quantity: number) {
