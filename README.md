@@ -8,6 +8,7 @@ This project is a Vue application implementing a product search with autocomplet
 - Autocomplete suggestions based on matching product names from the API response.
 - Users can select a suggestion or continue typing their search query.
 - Responsive design.
+- Additionally `Carting Feature`
 
 ## Technologies Used
 
