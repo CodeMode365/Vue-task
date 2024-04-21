@@ -116,7 +116,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import ProductCard from './ProductCard.vue'
 // import PageComponent from './PageComponent.vue'
 import CategoryFilter from './CategoryFilter.vue'

@@ -1,15 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
-import { useApiStore, type iCategories } from '@/stores/product'
+import { useApiStore } from '@/stores/product'
 import { storeToRefs } from 'pinia'
 
-const categories: (iCategories | 'All')[] = [
-  'electronics',
-  'jewelery',
-  "men's clothing",
-  "women's clothing",
-  'All'
-]
+const categories = ['electronics', 'jewelery', "men's clothing", "women's clothing", 'All']
 const { showCategories } = defineProps({
   showCategories: Boolean
 })

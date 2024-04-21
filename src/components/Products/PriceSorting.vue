@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { useApiStore } from '@/stores/product'
 import { storeToRefs } from 'pinia'

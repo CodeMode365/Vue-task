@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CartListing from '@/components/Cart/CartListing.vue'
 </script>
 <template>
