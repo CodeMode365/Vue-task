@@ -24,7 +24,7 @@ export const useApiStore = defineStore('apiStore', {
   }),
   getters: {
     totalCartItems(): number {
-      return this.cart.reduce((total, item) => total + item.quantity, 0)
+      return this.cart.reduce((total, item) => total + item.quantity, 0).toFixed(2)
     },
     totalCartPrice(): number {
       return this.cart.reduce((total, item) => total + item.price * item.quantity, 0)

@@ -9,7 +9,7 @@ const { cart } = storeToRefs(store)
 </script>
 
 <template>
-  <div class="min-h-screen bg-white text-gray-">
+  <div class="min-h-[80vh] bg-white text-gray-">
     <div>
       <Navbar>
         <RouterLink class="mx-2" to="/">Home</RouterLink>
