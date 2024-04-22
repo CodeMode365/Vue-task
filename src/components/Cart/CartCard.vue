@@ -49,7 +49,7 @@ const { title, id, price, image, quantity } = defineProps({
           </span>
         </div>
         <div class="flex items-center space-x-4">
-          <p class="text-sm">$ {{ price * quantity }}</p>
+          <p class="text-sm">$ {{ (price * quantity).toFixed(2) }}</p>
           <button @click="() => store.removeFromCart(id)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
