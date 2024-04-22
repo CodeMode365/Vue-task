@@ -6,7 +6,7 @@
       >
         <img class="" alt="hero" src="/src//assets//store.jpg" />
       </div>
-      <div class="text-center w-1/3">
+      <div class="text-center lg:w-1/3">
         <h1 class="title-font sm:text-4xl text-3xl font-medium">Shop the latest trends</h1>
         <p class="leading-relaxed mb-4">
           Discover the latest fashion trends and explore our curated collection of clothing,
